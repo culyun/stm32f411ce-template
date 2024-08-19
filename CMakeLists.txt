@@ -94,6 +94,12 @@ target_link_options(stm32f411_template.elf PRIVATE
 )
 
 # Print size after build
+add_custom_command(TARGET stm32f411_template.elf POST_BUILD
+  COMMAND ${ARM_OBJCOPY} -O binary -S "stm32f411_template.elf" "stm32f411_template.bin"
+  COMMENT "Converting stm32f411_template.elf to bin using ${ARM_OBJCOPY}"
+)
+
+# Print size after build
 # add_custom_command(TARGET stm32f411_template.elf POST_BUILD
 #     COMMAND ${ARM_SIZE} --format=berkeley "stm32f411_template.elf"
 #     COMMENT "Invoking: Cross ARM GNU Print Size"
