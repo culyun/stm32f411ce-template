@@ -89,6 +89,14 @@
 #define  APP_TRACE_INFO(x)    ((APP_TRACE_LEVEL >= TRACE_LEVEL_INFO)  ? (void)(APP_TRACE x) : (void)0)
 #define  APP_TRACE_DBG(x)     ((APP_TRACE_LEVEL >= TRACE_LEVEL_DBG)   ? (void)(APP_TRACE x) : (void)0)
 
+#if !defined(CPU_CFG_KA_IPL_BOUNDARY)
+#define CPU_CFG_KA_IPL_BOUNDARY (4u)
+#endif
+
+#if !defined(CPU_CFG_NVIC_PRIO_BITS)
+#define CPU_CFG_NVIC_PRIO_BITS (4u)
+#endif
+
 
 /*
 *********************************************************************************************************
