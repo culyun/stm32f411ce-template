@@ -107,7 +107,7 @@ add_subdirectory("blinky/")
 add_executable(blinky.elf dummy.c)
 
 target_link_libraries(blinky.elf
-    app
+    blinky
     vendor
 )
 
