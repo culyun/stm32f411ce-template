@@ -1,3 +1,3 @@
 [submodule "modules/ucos2"]
 	path = modules/ucos2
-	url = git@github.com:weston-embedded/uC-OS2.git
+	url = git@github.com:culyun/uC-OS2.git
