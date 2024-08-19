@@ -75,11 +75,13 @@ add_definitions(
 )
 
 # include after options have been defined
-add_subdirectory("src/")
 add_subdirectory("vendor/")
 
 # add the executable
 # all code comes from libraries -> need to have a dummy empty file
+
+add_subdirectory("src/")
+
 add_executable(stm32f411_template.elf dummy.c)
 
 target_link_libraries(stm32f411_template.elf
@@ -93,11 +95,34 @@ target_link_options(stm32f411_template.elf PRIVATE
     ${link_flags}
 )
 
-# Print size after build
 add_custom_command(TARGET stm32f411_template.elf POST_BUILD
   COMMAND ${ARM_OBJCOPY} -O binary -S "stm32f411_template.elf" "stm32f411_template.bin"
   COMMENT "Converting stm32f411_template.elf to bin using ${ARM_OBJCOPY}"
 )
+
+###########################################################
+
+add_subdirectory("blinky/")
+
+add_executable(blinky.elf dummy.c)
+
+target_link_libraries(blinky.elf
+    app
+    vendor
+)
+
+target_link_options(blinky.elf PRIVATE 
+    ${arch_flags} 
+    ${common_flags}
+    ${link_flags}
+)
+
+add_custom_command(TARGET blinky.elf POST_BUILD
+  COMMAND ${ARM_OBJCOPY} -O binary -S "blinky.elf" "blinky.bin"
+  COMMENT "Converting blinky.elf to bin using ${ARM_OBJCOPY}"
+)
+
+###########################################################
 
 # Print size after build
 # add_custom_command(TARGET stm32f411_template.elf POST_BUILD
